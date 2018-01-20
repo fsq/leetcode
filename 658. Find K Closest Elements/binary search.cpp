@@ -2,7 +2,7 @@ class Solution {
 public:
     
     // https://leetcode.com/problems/find-k-closest-elements/description/
-    // O(logn) binary search
+    // O(k+logn) binary search
     // first consider first k elements [0, k-1]
     // if arr[k] is better than a[0], we move window rightwards by 1
     // until the first i such that arr[i+k] is no better than a[i]
