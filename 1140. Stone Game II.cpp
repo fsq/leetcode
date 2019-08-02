@@ -3,7 +3,7 @@ public:
     int stoneGameII(vector<int>& a) {
         int n = a.size();
         a.insert(a.begin(), 0);
-        vector<vector<int>> f(n+2, vector<int>(n+2));
+        vector<vector<int>> f(n+2,  vector<int>(n+2));
         vector<int> s(n+1);
         partial_sum(a.begin()+1, a.end(), s.begin()+1);
         for (int i=n; i>=1; --i) 
