@@ -15,9 +15,7 @@ public:
                 f[i][j] = max(ma, mn);
                 g[i][j] = min(ma, mn);
             }
-        int ans = f[n-1][m-1];
-        if (ans < 0) return -1;
-        cout << ans << endl;
-        return ans % 1000000007;
+        long long ans = f[n-1][m-1] % 1000000007;
+        return ans < 0 ? -1 : ans;
     }
 };
