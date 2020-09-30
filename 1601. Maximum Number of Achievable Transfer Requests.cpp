@@ -34,7 +34,6 @@ public:
         ans = gift;
         
         sort(req.begin(), req.end());
-        for (auto& q : req) cout << q[0] << ' ' << q[1] << endl;
         vector<int> a(n);
         dfs(req, a, 0, 0, 0);
         return ans;
