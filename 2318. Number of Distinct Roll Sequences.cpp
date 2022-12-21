@@ -12,7 +12,6 @@ public:
             for (int y=1; y<=6; ++y)
                 if (x!=y && __gcd(x, y) == 1) {
                     pr.push_back({x, y});
-                    // cout << x << ' ' << y << endl;
                     f[2][x][y] = 1;                    
                 }
         
