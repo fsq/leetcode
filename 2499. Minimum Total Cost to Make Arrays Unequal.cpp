@@ -27,7 +27,6 @@ public:
                 ans += b[i];
                 --need;
             }
-        if (need) return -1;
-        return ans;
+        return need ? -1 : ans;
     }
 };
