@@ -10,21 +10,19 @@ public:
         f[0][0][0] = 1;
         f[0][0][1] = 1;
         for (int i=0; i<=zero; ++i) {
-            // s[j] = sum(f[i-k][j][1]) k in [1..limit]
-            // pf = sum(f[i][j-k][0]) k in [1..limit]
-            int pf = 0;
             for (int j=0; j<=one; ++j) {
-                if (i==0 && j==0) continue;
-                if (i>0) s[j] = (s[j] + f[i-1][j][1]) % M;
-                if (i-limit-1>=0) {
-                    s[j] = (s[j] - f[i-limit-1][j][1] + M) % M;
+                if (i>0) {
+                    f[i][j][0] = (f[i-1][j][0] + (j>0 ? f[i-1][j][1]:0)) % M;
+                    if (i-1-limit>=0) {
+                        f[i][j][0] = (f[i][j][0] - f[i-1-limit][j][1] + M) % M;
+                    }
                 }
-                if (j>0) pf = (pf + f[i][j-1][0]) % M;
-                if (j-limit-1>=0) {
-                    pf = (pf - f[i][j-limit-1][0] + M) % M;
+                if (j>0) {
+                    f[i][j][1] = (f[i][j-1][1] + (i>0 ? f[i][j-1][0]:0)) % M;
+                    if (j-1-limit>=0) {
+                        f[i][j][1] = (f[i][j][1] - f[i][j-1-limit][0] + M) % M;
+                    }
                 }
-                f[i][j][0] = s[j];
-                f[i][j][1] = pf;
             }
         }
         return (f[zero][one][0] + f[zero][one][1]) % M;
