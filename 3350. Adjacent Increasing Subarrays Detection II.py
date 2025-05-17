@@ -1,31 +1,11 @@
 class Solution:
-    def maxIncreasingSubarrays(self, nums: List[int]) -> int:
-
-        def valid(k):
-            if k == 1:
-                return True
-            j = k + 1
-            inc1 = inc2 = 1
-            while j < len(nums):
-                if nums[j-k]>nums[j-k-1]:
-                    inc1 += 1
-                else:
-                    inc1 = 1
-                if nums[j]>nums[j-1]:
-                    inc2 += 1
-                else:
-                    inc2 = 1
-                if inc1>=k and inc2>=k:
-                    return True
-                j += 1
-            return False
-
-        l = 1
-        r = len(nums)//2
-        while l < r:
-            mid = (l + r + 1) >> 1
-            if valid(mid):
-                l = mid
+    def maxIncreasingSubarrays(self, a: List[int]) -> int:
+        prev = 0
+        cur_len = ans = 1
+        for i in range(1, len(a)+1):
+            if i < len(a) and a[i] > a[i-1]:
+                cur_len += 1
             else:
-                r = mid - 1
-        return l
+                ans = max(ans, min(cur_len, prev), cur_len//2)
+                prev, cur_len = cur_len, 1
+        return ans
